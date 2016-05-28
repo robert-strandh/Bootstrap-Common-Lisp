@@ -1,0 +1,88 @@
+Welcome to Bootstrap Common Lisp, or BOCL for short.
+
+BOCL is (meant to one day be) a fully conforming Common Lisp
+implementation with a twist.  It is only meant for bootstrapping other
+Common Lisp implementations on platforms where, for some reason, no
+Common Lisp implementation is already available.  It is not meant for
+writing end-user applications.
+
+This main purpose of BOCL has some consequences to the way it is
+implemented.  In particular, there is no attempt to make it fast.
+Instead, the emphasis is on simplicity, maintainability, and
+correctness.  Specifically:
+
+  * We use the Boehm-Weiser conservative garbage collector.
+
+  * We take advantage of all situations in which the Common Lisp
+    standard states that some behavior is undefined or implementation
+    defined, in that we then do whatever is the easiest solution for
+    the situation.
+
+  * The type FIXNUM does not have a corresponding class.  All integers
+    are represented the same way.
+
+  * All objects have the same basic representation as a header
+    containing a pointer to the class of the object and a pointer to a
+    vector (not a Common Lisp vector) with the objects-specific
+    contents.
+
+  * The only specialized arrays are those mandated by the Common Lisp
+    standard, and even those arrays do not use any special
+    representation.  Thus an array of single bits will still have a
+    full BOCL object for each element, but that object is either the
+    integer 0 or the integer 1.
+
+  * More generally, we make no attempt to save space.
+
+  * Hash tables are internally implemented as lists for simplicity.
+
+  * There is no attempt to handle tail-call merging.
+
+  * All functions are called with a Common Lisp list of arguments.
+
+Currently, several free (or, more generally, FLOSS) implementations of
+Common Lisp are built from sources in some other language.  That
+language is typically C, but sometimes something else, like C++.
+There are probably several reasons for these implementations to be
+written this way, including historical (there was no widespread
+existing Common Lisp implementation when they were written), limited
+knowledge (the author did not know how to write a Common Lisp
+implementation in Common Lisp), and more.
+
+The process of building a Common Lisp system from sources written in
+some other language is a painful one, especially if one of the main
+objectives is for it to be fast, safe, and helpful to the programmer.
+Large parts of the system must be written in a language that is not
+very well adapted to expressing the semantics of Common Lisp.  Even
+though large parts of the system can be written in Common Lisp,
+because of the way the system is built, many system modules must be
+written in a subset of Common Lisp, making also that part painful to
+write.  For instance, it is common that CLOS not be available until
+very late in the bootstrapping process.
+
+The existence of BOCL will relieve most of the pain of maintainers of
+Common Lisp systems by concentrating that pain into BOCL.  These
+maintainers can now migrate their code from the existing
+implementation language to Common Lisp, relying on BOCL to exist.  At
+the same time, there is considerably less pain because of the
+simplifications to BOCL listed above.
+
+BOCL is (or rather, will be) implemented in ISO C.  We (will) do our
+utmost to avoid using constructs with undefined semantics, as the C
+standard indicates.  Only readily available shell tools are used in
+order to maximize portability.
+
+As an exception to the goal of simplicity, BOCL will contain a full
+implementation of the CLOS meta-object protocol (MOP) so as to allow
+implementers of other Common Lisp systems to take advantage of the MOP
+in their own implementations.
+
+In addition to being a bootstrapping tool for Common Lisp
+implementers, we think that BOCL will be an excellent illustration of
+the semantics of Common Lisp.  To make it easier for people interested
+in that topic, we think it is important that the BOCL code be highly
+idiomatic, uniform, and well documented.
+
+BOCL will not happen unless it is contributed to by others, so if you
+have knowledge of how to implement Common Lisp in C or interest in
+learning how to do it, please consider contributing.
