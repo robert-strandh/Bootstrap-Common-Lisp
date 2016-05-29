@@ -18,6 +18,13 @@ struct header_struct integer_1_header =
     integer_1_rack,
   };
 
+/* We define some integers at compile time, because integers are used
+   in the rack of most objects to indicate the number of words the
+   object contains.  And, since we want to generate some of these
+   other objects at compile time as well, we need these integers for
+   that purpose.
+ */
+
 define_integer(0);
 define_integer(2);
 define_integer(3);
