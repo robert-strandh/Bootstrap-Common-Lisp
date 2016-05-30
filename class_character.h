@@ -8,7 +8,7 @@ extern struct header_struct class_character_header;
 void *                                                           \
 character_ ## name ## _rack[] =                                  \
   {                                                              \
-    (void *) &symbol_nil_header,                                 \
+    reference_symbol(NIL),                                       \
     (void *) &integer_1_header,                                  \
     (void *) value,                                              \
   };                                                             \
