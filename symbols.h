@@ -1,3 +1,4 @@
 #include "header.h"
+#include "class_symbol.h"
 
-extern struct header_struct symbol_nil_header;
+declare_symbol(NIL);
