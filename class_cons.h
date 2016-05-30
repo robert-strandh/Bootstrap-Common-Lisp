@@ -10,7 +10,7 @@ extern struct header_struct class_cons_header;
 void *                                               \
 cons_ ## name ## _rack[] =                           \
   {                                                  \
-    (void *) &symbol_nil_header,                     \
+    reference_symbol(NIL),                           \
     car,                                             \
     cdr,                                             \
   };                                                 \
