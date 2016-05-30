@@ -8,7 +8,7 @@
 void *
 string_NIL_rack[] =
   {
-    (void *) &symbol_nil_header,
+    reference_symbol(NIL),
     &integer_3_header,
     &character_N_header,
     &character_I_header,

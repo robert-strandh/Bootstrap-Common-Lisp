@@ -7,7 +7,7 @@
 void *
 integer_1_rack[] =
   {
-    reference_symbol(nil), 
+    reference_symbol(NIL),
     reference_integer(1),
     (void *) 1,
   };
