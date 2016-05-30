@@ -7,7 +7,7 @@ extern struct header_struct class_integer_header;
 void *                                                         \
 integer_ ## value ## _rack[] =                                 \
   {                                                            \
-    (void *) &symbol_nil_header,                               \
+    reference_symbol(NIL),				       \
     (void *) &integer_1_header,                                \
     (void *) value,                                            \
   };                                                           \
