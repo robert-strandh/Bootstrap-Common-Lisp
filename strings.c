@@ -14,3 +14,9 @@ string_NIL_rack[] =
     &character_I_header,
     &character_L_header,
   };
+
+struct header_struct string_NIL_header =
+  {
+    reference_symbol(NIL),
+    string_NIL_rack,
+  };
