@@ -6,7 +6,7 @@
    temporary solution so that we can create an executable, which
    requires all external references to be resolved. */
 
-struct header_struct class_builtin_class_header =
+struct header_struct class_built_in_class_header =
   {
     reference_symbol(NIL),
     reference_symbol(NIL),
