@@ -1,9 +1,9 @@
 #include "header.h"
 #include "symbols.h"
 
-extern struct header_struct class_class_header;
+extern struct header_struct class_built_in_class_header;
 
-#define define_class(name)                                  \
+#define define_class(name, metaclass_name)	            \
                                                             \
 void *                                                      \
 class_ ## name ## _rack[] =                                 \
@@ -13,7 +13,7 @@ class_ ## name ## _rack[] =                                 \
                                                             \
 struct header_struct class_ ## name ## _header =            \
   {                                                         \
-    &class_class_header,                                    \
+    &class_ ## metaclass_name ## _header,                   \
     class_ ## name ## _rack,		                    \
   }
 
