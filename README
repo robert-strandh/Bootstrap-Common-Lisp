@@ -1,7 +1,7 @@
 Welcome to Bootstrap Common Lisp, or BOCL for short.
 
 BOCL is (meant to one day be) a fully conforming Common Lisp
-implementation with a twist.  It is only meant for bootstrapping other
+implementation with a twist.  It is meant only for bootstrapping other
 Common Lisp implementations on platforms where, for some reason, no
 Common Lisp implementation is already available.  It is not meant for
 writing end-user applications.
@@ -38,7 +38,9 @@ correctness.  Specifically:
 
   * There is no attempt to handle tail-call merging.
 
-  * All functions are called with a Common Lisp list of arguments.
+  * All functions are called with three arguments: the static
+    environment, the dynamic environment, and a Common Lisp list of
+    arguments.
 
 Currently, several free (or, more generally, FLOSS) implementations of
 Common Lisp are built from sources in some other language.  That
