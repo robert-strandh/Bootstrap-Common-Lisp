@@ -20,6 +20,3 @@ struct header_struct integer_ ## value ## _header =            \
 
 #define reference_integer(value)                               \
   (void *) &integer_ ## value ## _header
-
-#define declare_integer(value)                                 \
-  extern struct header_struct integer_ ## value ## _header;
