@@ -8,134 +8,16 @@
    are used to build string that we also need at compile time.
  */
 
-define_character(NUL, 0);
-define_character(SOH, 1);
-define_character(STX, 2);
-define_character(ETX, 3);
-define_character(EOT, 4);
-define_character(ENQ, 5);
-define_character(ACK, 6);
-define_character(BEL, 7);
-define_character(BS, 8);
-define_character(TAB, 9);
-define_character(LF, 10);
-define_character(VT, 11);
-define_character(FF, 12);
-define_character(CR, 13);
-define_character(SO, 14);
-define_character(SI, 15);
-define_character(DLE, 16);
-define_character(DC1, 17);
-define_character(DC2, 18);
-define_character(DC3, 19);
-define_character(DC4, 20);
-define_character(NAK, 21);
-define_character(SYN, 22);
-define_character(ETB, 23);
-define_character(CAN, 24);
-define_character(EM, 25);
-define_character(SUB, 26);
-define_character(ESC, 27);
-define_character(FS, 28);
-define_character(GS, 29);
-define_character(RS, 30);
-define_character(US, 31);
-
-define_character(space, 32);
-define_character(exclamation_mark, 33);
-define_character(double_quote, 34);
-define_character(hash_sign, 35);
-define_character(dollar_sign, 36);
-define_character(percent_sign, 37);
-define_character(ampersand, 38);
-define_character(single_quote, 39);
-define_character(left_parenthesis, 40);
-define_character(right_parenthesis, 41);
-define_character(asterisk, 42);
-define_character(plus_sign, 43);
-define_character(comma, 44);
-define_character(minus_sign, 45);
-define_character(dot, 46);
-define_character(slash, 47);
-define_character(0, 48);
-define_character(1, 49);
-define_character(2, 50);
-define_character(3, 51);
-define_character(4, 52);
-define_character(5, 53);
-define_character(6, 54);
-define_character(7, 55);
-define_character(8, 56);
-define_character(9, 57);
-define_character(colon, 58);
-define_character(semicolon, 59);
-define_character(less_than_sign, 60);
-define_character(equal_sign, 61);
-define_character(greater_than_sign, 62);
-define_character(question_mark, 63);
-
-define_character(at_sign, 64);
-define_character(A, 65);
-define_character(B, 66);
-define_character(C, 67);
-define_character(D, 68);
-define_character(E, 69);
-define_character(F, 70);
-define_character(G, 71);
-define_character(H, 72);
-define_character(I, 73);
-define_character(J, 74);
-define_character(K, 75);
-define_character(L, 76);
-define_character(M, 77);
-define_character(N, 78);
-define_character(O, 79);
-define_character(P, 80);
-define_character(Q, 81);
-define_character(R, 82);
-define_character(S, 83);
-define_character(T, 84);
-define_character(U, 85);
-define_character(V, 86);
-define_character(W, 87);
-define_character(X, 88);
-define_character(Y, 89);
-define_character(Z, 90);
-define_character(left_bracket, 91);
-define_character(backslash, 92);
-define_character(right_bracket, 93);
-define_character(circumflex, 94);
-define_character(underscore, 95);
-
-define_character(backquote, 96);
-define_character(a, 97);
-define_character(b, 98);
-define_character(c, 99);
-define_character(d, 100);
-define_character(e, 101);
-define_character(f, 102);
-define_character(g, 103);
-define_character(h, 104);
-define_character(i, 105);
-define_character(j, 106);
-define_character(k, 107);
-define_character(l, 108);
-define_character(m, 109);
-define_character(n, 110);
-define_character(o, 111);
-define_character(p, 112);
-define_character(q, 113);
-define_character(r, 114);
-define_character(s, 115);
-define_character(t, 116);
-define_character(u, 117);
-define_character(v, 118);
-define_character(w, 119);
-define_character(x, 120);
-define_character(y, 121);
-define_character(z, 122);
-define_character(left_brace, 123);
-define_character(vertical_bar, 124);
-define_character(right_brace, 125);
-define_character(tilde, 126);
-define_character(DEL, 127);
+#define X(name, value) \
+static void *character_ ## name ## _rack[] = {                   \
+    reference_symbol(NIL),                                       \
+    (void *) &integer_1_header,                                  \
+    (void *) value,                                              \
+};                                                               \
+                                                                 \
+struct header_struct character_ ## name ## _header = {           \
+    &class_character_header,                                     \
+    character_ ## name ## _rack,                                 \
+}
+#include "character_list.h"
+#undef X
